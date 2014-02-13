@@ -58,7 +58,8 @@ NSString *const CTTokenFieldChangeFrameAnimationDurationKey = @"CTTokenFieldChan
     self.rowNumber = 1;
     self.tokenViews = [NSMutableOrderedSet orderedSet];
 
-    self.backgroundColor = [UIColor whiteColor];
+    // Background color should be optional
+    self.backgroundColor = self.backgroundColor ?: [UIColor whiteColor];
 
     [self setUpScrollView];
     [self setUpLabel];
