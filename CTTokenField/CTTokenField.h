@@ -53,6 +53,8 @@ extern NSString *const CTTokenFieldChangeFrameAnimationDurationKey;
 
 @property (nonatomic, readonly) BOOL isSearchMode;
 
+@property (nonatomic) BOOL hideBottomLine;
+
 - (void)reloadData;
 
 - (void)removeTokenView:(CTTokenView *)tokenView;

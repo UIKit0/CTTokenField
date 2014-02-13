@@ -392,8 +392,10 @@ NSString *const CTTokenFieldChangeFrameAnimationDurationKey = @"CTTokenFieldChan
 {
     [super drawRect:rect];
 
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [self drawBottomLineWithRect:rect context:context];
+    if ( ! self.hideBottomLine) {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        [self drawBottomLineWithRect:rect context:context];
+    }
 }
 
 - (void)drawBottomLineWithRect:(CGRect)rect context:(CGContextRef)context
