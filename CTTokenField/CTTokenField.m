@@ -578,6 +578,7 @@ NSString *const CTTokenFieldChangeFrameAnimationDurationKey = @"CTTokenFieldChan
             self.containerView.frame = containerFrame;
         }                completion:^(BOOL finished) {
             [self setNeedsDisplay];
+            [self invalidateIntrinsicContentSize];
 
             if ([self.delegate respondsToSelector:@selector(tokenField:didChangeFrameWithInfo:)]) {
                 [self.delegate tokenField:self didChangeFrameWithInfo:@{CTTokenFieldChangeFrameKey : [NSValue valueWithCGRect:frame]}];
@@ -596,6 +597,7 @@ NSString *const CTTokenFieldChangeFrameAnimationDurationKey = @"CTTokenFieldChan
 
         self.frame = frame;
         [self setNeedsDisplay];
+        [self invalidateIntrinsicContentSize];
 
         if ([self.delegate respondsToSelector:@selector(tokenField:didChangeFrameWithInfo:)]) {
             [self.delegate tokenField:self didChangeFrameWithInfo:@{CTTokenFieldChangeFrameKey : [NSValue valueWithCGRect:frame]}];
@@ -612,6 +614,11 @@ NSString *const CTTokenFieldChangeFrameAnimationDurationKey = @"CTTokenFieldChan
 - (CGSize)sizeThatFits:(CGSize)size
 {
     return CGSizeMake(size.width, self.rowNumber * self.rowHeight);
+}
+
+- (CGSize)intrinsicContentSize {
+    CGSize size = self.frame.size;
+    return [self sizeThatFits:CGSizeMake(size.width, CGFLOAT_MAX)];
 }
 
 #pragma mark - Gesture handling
